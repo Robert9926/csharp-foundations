@@ -1,0 +1,15 @@
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\bin\Debug\net8.0\Proyecto C#.exe
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\bin\Debug\net8.0\Proyecto C#.deps.json
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\bin\Debug\net8.0\Proyecto C#.runtimeconfig.json
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\bin\Debug\net8.0\Proyecto C#.dll
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\bin\Debug\net8.0\Proyecto C#.pdb
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.AssemblyInfoInputs.cache
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.AssemblyInfo.cs
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.csproj.CoreCompileInputs.cache
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.sourcelink.json
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.dll
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\refint\Proyecto C#.dll
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.pdb
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\Proyecto C#.genruntimeconfig.cache
+C:\Users\ROBERT26\Desktop\csharp-foundations\Proyecto C#\obj\Debug\net8.0\ref\Proyecto C#.dll
