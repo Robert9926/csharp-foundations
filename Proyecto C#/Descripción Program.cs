@@ -66,7 +66,7 @@ namespace MiPrimerPrograma
          *      Compilador =/= Runtime
          *          compilador:
          *      traduce código y resuelve nombres (using, types, etc.)
-         *          runtime (CLR):
+         *           runtime (CLR):
          *      ejecuta el programa ya compilado
          * 
         */

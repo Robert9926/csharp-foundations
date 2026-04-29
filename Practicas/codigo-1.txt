@@ -1,0 +1,40 @@
+using System;
+
+interface IGuardar
+{
+	void Guardar(string contenido);
+}
+
+class ArchivoServicio : IGuardar
+{
+	public void Guardar(string contenido)
+	{
+		Console.WriteLine("Guardar en archivo:" + contenido);
+	}
+}
+
+class Reporte 
+{
+	private IGuardar archivo;
+
+	public  Reporte(IGuardar a)
+	{
+		archivo = a;
+	}
+
+	public void Generar()
+	{
+		string contenido = "Reporte generado";
+		archivo.Guardar(contenido);
+	}
+}
+
+class Program
+{
+	static void Main()
+	{
+		IGuardar g = new ArchivoServicio();
+		Reporte r = new Reporte(g);
+		r.Generar();
+	}
+}
