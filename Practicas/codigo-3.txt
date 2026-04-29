@@ -1,0 +1,57 @@
+class PagoConTarjeta
+{
+    public void Pagar(double monto)
+    {
+        Console.WriteLine("Pagando con tarjeta: " + monto);
+    }
+}
+
+class Tienda
+{
+    private PagoConTarjeta pago = new PagoConTarjeta();
+
+    public void Comprar()
+    {
+        pago.Pagar(100);
+    }
+}
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+using System;
+
+interface IPago
+{
+    void Pagar(double monto);
+}
+
+class PagoConTarjeta : IPago
+{
+    public void Pagar(double monto)
+    {   
+        Console.WriteLine("Pagando con tarjeta: " + monto);
+    }
+}
+
+class Tienda 
+{
+    private IPago pago;
+
+    public Tienda(IPago a)
+    {
+        pago = a;
+    }
+
+    public void Comprar()
+    {
+        pago.Pagar(100);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        IPago p = new PagoConTarjeta();
+        Tienda t = new Tienda(p);
+        t.Comprar();
+    }
+}

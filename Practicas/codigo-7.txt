@@ -1,0 +1,59 @@
+using System;
+
+class Pedido
+{
+    public void Procesar()
+    {
+        Console.WriteLine("Pedido procesado");
+    }
+}
+
+class Sistema
+{
+    private Pedido pedido = new Pedido();
+
+    public void Ejecutar()
+    {
+        pedido.Procesar();
+    }
+}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+using System;
+
+interface IPedido
+{
+    void Procesar();
+}
+
+class PedidoFisico : IPedido
+{
+    public void Procesar()
+    {   
+        Console.WriteLine("Pedido Procesando...");
+    }
+}
+
+class Sistema
+{
+    private IPedido p;
+
+    public Sistema(IPedido a)
+    {
+        p = a;
+    } 
+
+    public void Ejecutar()
+    {
+        p.Procesar();
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        IPedido p = new PedidoFisico();
+        Sistema s = new Sistema(p);
+        s.Ejecutar();
+    }
+}

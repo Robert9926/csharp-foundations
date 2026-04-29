@@ -1,0 +1,57 @@
+class EmailServicio
+{
+    public void Enviar(string mensaje)
+    {
+        Console.WriteLine("Enviando email: " + mensaje);
+    }
+}
+
+class Usuario
+{
+    private EmailServicio servicio = new EmailServicio();
+
+    public void Notificar()
+    {
+        servicio.Enviar("Tienes un mensaje");
+    }
+}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+using System;
+
+interface IEnviar
+{
+    void Enviar(string mensaje);
+}
+
+class EmailServicio : IEnviar
+{
+    public void Enviar(string mensaje)
+    {
+        Console.WriteLine("Enviando email: " + mensaje);
+    }
+}
+
+class Usuario
+{
+    private IEnviar e;
+
+    public Usuario(IEnviar a)
+    {
+        e = a;
+    }
+
+    public void Notificar()
+    {
+        e.Enviar("Tienes un Mensaje");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        IEnviar a = new EmailServicio();
+        Usuario u = new Usuario(a);
+        u.Notificar();
+    }
+}

@@ -1,5 +1,35 @@
 using System;
 
+class ArchivoServicio
+{
+    public void Guardar(string contenido)
+    {
+        Console.WriteLine("Guardando en archivo: " + contenido);
+    }
+}
+
+class Reporte
+{
+    private ArchivoServicio archivo = new ArchivoServicio();
+
+    public void Generar()
+    {
+        string contenido = "Reporte generado";
+        archivo.Guardar(contenido);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Reporte r = new Reporte();
+        r.Generar();
+    }
+}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+using System;
+
 interface IGuardar
 {
 	void Guardar(string contenido);

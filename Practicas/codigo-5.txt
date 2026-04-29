@@ -1,0 +1,56 @@
+interface IPago
+{
+    void Pagar(double monto);
+}
+
+class PagoConTarjeta : IPago
+{
+    public void Pagar(double monto)
+    {
+        Console.WriteLine("Pagando con tarjeta: " + monto);
+    }
+}
+
+class PagoEfectivo : IPago
+{
+    public void Pagar(double monto)
+    {
+        Console.WriteLine("Pagando en efectivo: " + monto);
+    }
+}
+
+class Tienda
+{
+    private IPago pago;
+
+    public Tienda(IPago p)
+    {
+        pago = p;
+    }
+
+    public void Comprar()
+    {
+        pago.Pagar(100);
+    }
+}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class Program
+{
+    static void Main()
+    {
+        IPago p1;
+
+        Console.WriteLine("Desea Pagar con Tarjeta (1) o Efectivo (2)??: ");
+        int tipo = int.Parse(Console.ReadLine());
+        if (tipo == 1) 
+        {
+            p1 = new PagoConTarjeta();
+        } else {
+            p1 = new PagoEfectivo();
+        }
+
+        Tienda t = new Tienda(p1);
+        t.Comprar();
+        
+    }
+}

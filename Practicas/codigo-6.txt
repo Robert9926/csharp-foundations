@@ -1,0 +1,36 @@
+interface IGuardar
+{
+	void Guardar(string g);
+}
+
+interface IMostrar
+{
+	void Mostrar(string m);
+}
+
+class Archivo : IGuardar, IMostrar
+{
+
+	public void Guardar(string g)
+	{
+		Console.WriteLine("Guardando: " + g);
+	}
+
+	public void Mostrar(string m)
+	{
+		Console.WriteLine("Mostrando: " + m);
+	}
+	
+}
+
+class Program
+{
+	static void Main()
+	{
+		Archivo a = new Archivo();
+
+		IGuardar guardar = a;
+		IMostrar mostrar = a;
+
+	}
+}

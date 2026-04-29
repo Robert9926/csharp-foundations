@@ -1,0 +1,45 @@
+class Logger
+{
+    public void Log(string mensaje)
+    {
+        Console.WriteLine(mensaje);
+    }
+}
+
+class App
+{
+    private Logger logger = new Logger();
+
+    public void Ejecutar()
+    {
+        logger.Log("Ejecutando...");
+    }
+}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+interface ILogger
+{
+	 void Log(string mensaje);
+}
+
+class Logger : ILogger
+{
+    public void Log(string mensaje)
+    {
+        Console.WriteLine(mensaje);
+    }
+}
+
+class App
+{
+    private ILogger logger;
+
+    public App (ILogger a)
+    {
+    	logger = a;
+    }
+
+    public void Ejecutar()
+    {
+        logger.Log("Ejecutando...");
+    }
+}
