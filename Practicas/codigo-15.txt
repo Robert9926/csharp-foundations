@@ -1,0 +1,118 @@
+using System;
+
+class Usuario
+{
+	private string nombre;
+	private int edad;
+	private decimal saldo;
+	private enum Estado {activa, bloqueada}
+	private Estado estadoCuenta;
+	public bool estaActiva()
+	{	return estadoCuenta == Estado.activa;  }
+
+	public string Nombre	//  <-  Propiedad
+	{
+		get {return nombre;}
+		private set 
+		{
+			if (!string.IsNullOrWhiteSpace(value))
+			{	nombre = value;	}
+			else {	throw new Exception("Nombre no Valido");	}
+		}
+	}
+
+	public int Edad 	//  <-  Propiedad
+	{
+		get {return edad;}
+		private set 
+		{
+			if (value > 12)
+			{ edad = value;	}
+			else { throw new Exception("Edad no Valida");	}
+		}
+	}
+
+	public decimal Saldo 	//  <-  Propiedad
+	{
+		get {return saldo;}
+		private set 
+		{
+			if (value >= 0)
+			{	saldo = value;	}
+			else {	throw new Exception("Saldo Inicial no Valido");	}
+		}
+	}
+
+	public Usuario (string n, int e, decimal s) 	//  <-  Constructor
+	{
+		Nombre = n;
+		Edad = e;
+		Saldo = s;
+		estadoCuenta = Estado.activa;
+	}	
+
+	public void Depositar(decimal s)	//  <-  Método
+	{
+		if (s > 0)
+		{
+			if (estaActiva())
+			{	Saldo += s;	}
+			else {	throw new Exception("Cuenta no Activa");	}			
+		} else { throw new Exception("Cantidad no Valida"); }
+	}
+
+	public void Bloquear()		//  <-  Método
+	{
+		if (estaActiva())
+		{	estadoCuenta = Estado.bloqueada;	}
+		else {	throw new Exception("Cuenta ya Bloqueada");	}	
+	}
+
+	public void Desbloquear(bool esAdmin)		//  <-  Método
+	{
+		if (esAdmin)
+		{
+			if (!estaActiva())
+			{	estadoCuenta = Estado.activa;	}
+			else {	throw new Exception("Cuenta ya Desbloqueada");	}	
+		} else {	throw new Exception("No es Administrador");	}	
+	}
+
+	public void Retirar(decimal r)
+	{
+		if (r <= 0)
+		{	throw new Exception("Retiro No Valido");  }
+			if (!estaActiva())
+		{	throw new Exception("Cuenta no Activa");  }	
+		if (r > Saldo)
+		{	throw new Exception("Saldo no Disponible");  }
+
+		Saldo -= r;
+	}
+}
+
+class Transferencia
+{
+	private Usuario origen;
+	private Usuario destino;
+	private decimal monto;
+
+	public void Ejecutar()	//  No es necesario pasar parametros, ya que se pasaran al momento de inicializar el objeto en el 
+							//	constructor
+	{		
+		if (origen == destino)
+		{ throw new Exception("Mismo Usuario");  }
+		if (monto <= 0)
+		{ throw new Exception("Monto Invalido");  }		
+		if (!origen.estaActiva())
+		{	throw new Exception("Cuenta no Activa");  }
+		if (!destino.estaActiva())
+		{	throw new Exception("Cuenta no Activa");  }
+		if (monto > origen.Saldo)
+		{  throw new Exception("Saldo no Disponible");  }
+		
+		origen.Retirar(monto);
+		destino.Depositar(monto);	
+
+	}
+}

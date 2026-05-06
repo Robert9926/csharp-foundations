@@ -1,0 +1,92 @@
+using System;
+
+class Cuenta
+{
+	private string titular;
+	private decimal saldo;
+	private enum Estado {activa, bloqueada}	
+	private DateTime ultimoRetiro;
+	private int contador = 0;
+	private Estado est;
+	public bool EstaActiva ()
+	{	return est == Estado.activa;	}
+
+	public string Titular
+	{
+		get {return titular;}
+		private set 
+		{ 
+			if(string.IsNullOrWhiteSpace(value))
+			{ throw new Exception("Nombre Titular no Valido");  }
+			titular = value;
+		}
+	}
+
+	public decimal Saldo
+	{
+		get {return saldo;}
+		private set 
+		{
+			if (value < 0)
+			{ throw new Exception("Saldo no Valido");  }
+			saldo = value;
+		}
+	}	
+
+	public Cuenta(string t, decimal s)
+	{
+		Titular = t;
+		Saldo = s;
+		est = Estado.activa;
+	}	
+
+	public void Depositar(decimal d)
+	{
+		if (d <= 0)
+		{ throw new Exception("Deposito no Valido"); }
+		if (!EstaActiva())
+		{ throw new Exception("Cuenta Bloqueada");  }
+
+		Saldo += d;
+	}
+
+	public void Retirar(decimal r)
+	{		
+		if (!EstaActiva())
+        throw new Exception("Cuenta bloqueada");
+        if (r <= 0)
+		{ throw new Exception("Retiro no Valido");  }	
+		if (r > Saldo)
+		{ throw new Exception("Cantidad Insuficiente");  }
+		if (ultimoRetiro.Date != DateTime.Now.Date)
+		{
+			ultimoRetiro = DateTime.Now.Date;
+			contador = 0;
+		}		
+
+		if (contador >= 3)
+		{ throw new Exception("Cantidad de Retiros Excedidos");  }						
+		
+		contador++;
+		Saldo -= r;
+	}
+
+	public void Bloquear()
+	{
+		if (!EstaActiva())
+		{ throw new Exception("Cuenta ya Bloqueada");  }
+
+		est = Estado.bloqueada;
+	}
+
+	public void Desbloquear(bool EsAdmin)
+	{
+		if (!EsAdmin)
+		{ throw new Exception("No es Administrador");  }
+		if (EstaActiva())
+		{ throw new Exception("Cuenta ya Activa");  }
+
+		est = Estado.activa;
+
+	}
+}

@@ -1,0 +1,49 @@
+using System;
+
+class CuentaBancaria
+{
+	private int saldo;	
+
+	public CuentaBancaria(int s)
+	{
+		if (s >= 0)
+		{
+			Saldo = s;		
+		} else {
+			throw new Exception("Saldo Inicial invalido");
+		}		
+	}
+
+	public void Deposito(int d)
+	{
+		if (d > 0)
+		{
+			saldo += d;			
+		} else {
+			throw new Exception("Cantidad de Deposito no Valida");
+		}			
+	}
+
+	public void Retiro(int r)
+	{
+		if (r > 0 && r <= Saldo)
+		{
+			saldo = saldo - r;					
+		}  else {
+			throw new Exception("Cantidad de Retiro no Valida");
+		}	
+	}
+
+	public int Saldo
+	{
+		get {return saldo;}		
+	}
+}
+
+class Program
+{
+	static void Main()
+	{
+
+	}
+}

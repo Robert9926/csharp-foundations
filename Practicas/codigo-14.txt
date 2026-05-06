@@ -1,0 +1,51 @@
+interface IPagable
+{
+	void ProcesarPago(decimal monto);
+}
+
+class Pago : IPagable
+{
+	protected decimal saldoDisponible;
+	protected bool activo;
+
+	public Pago()
+	{
+		saldoDisponible = 0;
+		activo = true;
+	}
+
+	public void Depositar(decimal monto)
+	{
+		if(!activo)
+		{ throw new Exception("Estado Inactivo");  }
+		if(monto <= 0)
+		{ throw new Exception("Monto no Permitido");  }
+
+		saldoDisponible += monto;
+	}
+
+	public virtual void ProcesarPago(decimal monto)
+	{	
+		if(!activo)
+		{ throw new Exception("Estado Inactivo");  }
+		saldoDisponible -= monto;
+	}
+}
+
+class TarjetaCredito : Pago
+{
+	public override void ProcesarPago(decimal monto)
+	{
+		base.ProcesarPago(monto);
+	}	
+}
+
+class TarjetaDebito : Pago
+{
+	public override void ProcesarPago(decimal monto)
+	{
+		if (monto > saldoDisponible)
+		{ throw new Exception("Saldo No Disponible");  }
+		base.ProcesarPago(monto);		
+	}
+}

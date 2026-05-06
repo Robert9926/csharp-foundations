@@ -1,0 +1,85 @@
+using System;
+using System.Collections.Generic;
+
+class Producto
+{
+	private string nombre;
+	private int precio;
+
+	public Producto(string n, int p)
+	{
+		if (p > 0 && !string.IsNullOrWhiteSpace(n))		// !string.IsNullOrWhiteSpace(n) ->  Verifica si n No es: null, "", "   ".
+		{
+			nombre = n;
+			precio = p;
+		} else {
+			throw new Exception("Datos no Validos");
+		}		
+	}
+
+	public string Nombre
+	{
+		get {return nombre;}
+	}
+
+	public int Precio
+	{
+		get {return precio;}
+	}
+}
+
+class Carrito
+{
+	private List<Producto> productos = new List<Producto>();
+	private int total;
+
+	public void AgregarProducto(Producto p)
+	{		
+		if (p != null)
+		{
+			productos.Add(p);
+			total += p.Precio;		
+		} else {
+			throw new Exception("Producto Agregado No Valido");
+		}
+	}	
+
+	public int Total
+	{
+		get {return total;}
+	}	
+}	
+
+class Pedido
+{
+	private Carrito carrito;
+	private enum Estado {Pendiente, Procesando}	
+	private Estado estado;
+
+	public Pedido(Carrito c)
+	{
+		if (c != null)
+		{
+			carrito = c;
+			estado = Estado.Pendiente;
+		} else{
+			throw new Exception("Pedido No valido");
+		}
+	}
+
+	public void Procesar()
+	{
+		if (estado != Estado.Procesando)
+		{
+			estado = Estado.Procesando;
+		} else {
+			throw new Exception("Pedido ya Procesado");
+		}
+
+	}
+
+	public int ObtenerTotal()
+	{
+		return carrito.Total;
+	}
+}

@@ -51,6 +51,8 @@ public class Class1
 		 *		- numeros[1] = 50;
 		 *	Eliminar:
 		 *		- numeros.Remove(10);
+		 *	Contar:
+		 *		- int a = numeros.Count;
 		 *		
 		 *		
 		 *	- Al borrar un valor:  numeros.Remove(10);  - realiza una busqueda lineal, de inicio hasta encontrar el valor o hasta el final.

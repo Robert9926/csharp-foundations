@@ -1,0 +1,46 @@
+using System;
+
+interface IEnviable
+{
+	void Enviar();
+}
+
+class Notificacion : IEnviable
+{
+	private string mensaje;
+	private bool enviada;
+
+	public Notificacion(string m)
+	{
+		mensaje = m;
+		enviada = false;
+	}
+
+	public virtual void Enviar()
+	{
+		if (enviada)
+		{ throw new Exception("Notificación ya Enviada");  }
+		enviada = true;
+	}	
+}
+
+class EmailNotificacion : Notificacion
+{
+	public EmailNotificacion(string m) : base(m) {}
+
+	public override void Enviar()
+	{
+		base.Enviar();
+		Console.WriteLine("Enviando Email");
+	}
+}
+
+class SmsNotificacion : Notificacion
+{
+	public SmsNotificacion(string m) : base(m) {}
+	public override void Enviar()
+	{
+		base.Enviar();
+		Console.WriteLine("Enviando SMS");
+	}
+}

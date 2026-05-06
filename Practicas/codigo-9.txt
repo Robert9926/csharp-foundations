@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+
+class Producto
+{
+	private string nombre;
+	private int precio;
+
+	public Producto(string n, int p)
+	{
+		if (p > 0 && !string.IsNullOrWhiteSpace(n))		// !string.IsNullOrWhiteSpace(n) ->  Verifica si n No es: null, "", "   ".
+		{
+			nombre = n;
+			precio = p;
+		} else {
+			throw new Exception("Datos no Validos");
+		}		
+	}
+
+	public string Nombre
+	{
+		get {return nombre;}
+	}
+
+	public int Precio
+	{
+		get {return precio;}
+	}
+}
+
+class Carrito
+{
+	private List<Producto> productos = new List<Producto>();
+	private int total;
+
+	public void AgregarProducto(Producto p)
+	{		
+		if (p != null)
+		{
+			productos.Add(p);
+			total += p.Precio;		
+		} else {
+			throw new Exception("Producto Agregado No Valido");
+		}
+	}	
+
+	public int Total
+	{
+		get {return total;}
+	}
+
+}

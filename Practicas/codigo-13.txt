@@ -1,0 +1,41 @@
+interface IConducible
+{
+	void Encender();
+	void Mover();
+}
+
+class Vehiculo : IConducible
+{
+	protected bool encendido;	//  variable bool se crea por defecto en "false".
+								//  No es necesario Constructor ya que no hay un estado inicial necesario.
+	
+	public void Encender()
+	{
+		if (encendido)
+		{ throw new Exception("Vehiculo ya Encendido");  }
+		encendido = true;
+	}
+
+	public virtual void Mover()	
+	{
+		if (!encendido)
+		{ throw new Exception("Vehiculo Apagado");  }
+		Console.WriteLine("Vehiculo Moviendose");
+	}
+}
+
+class Coche : Vehiculo
+{	
+	public override void Mover()
+	{	
+		Console.WriteLine("El Coche se esta Moviendo");
+	}
+}
+
+class Motocicleta : Vehiculo
+{	
+	public override void Mover()
+	{	
+		Console.WriteLine("La Motocicleta esta acelerando");
+	}
+}
